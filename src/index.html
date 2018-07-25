@@ -14,12 +14,14 @@
 <body>
   <div id="paginaDeBusqueda">
     <div class="container">
-      <h1 class="text-center font-weight-light">FoodMap</h1>
-      <div id="map"></div>
+      <h1 class="text-center font-weight-light p-3">FoodMap</h1>
     </div>
+    <div id="map" class="ml-4"></div>    
     <div class="container">
-      <h3 class="text-center font-weight-light">Comida cerca de ti</h3>
-      <input type="text">
+      <h3 class="text-center font-weight-light mt-3">Comida cerca de ti</h3>
+      <div class="row justify-content-center">
+        <input type="text" id="inputRestaurant" class="mb-5">
+      </div>
     </div>
     <div class="container" id="imagenes">
       <div id="carousel" class="carousel slide" data-ride="carousel">
@@ -57,8 +59,7 @@
     crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
     crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb5pykhBhNVk7b05gmIPZm0ucZSfmlmDU&callback=initMap"
-    async defer></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBb5pykhBhNVk7b05gmIPZm0ucZSfmlmDU&callback=initMap"></script>
   <script src="assets/js/main.js"></script>
 </body>
 
