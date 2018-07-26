@@ -1,3 +1,12 @@
+// Vista splash con duración de 2s
+window.onload = () => {
+  setTimeout(function () {
+    const courtainContainer = document.getElementById('courtainContainer');
+    courtainContainer.style.visibility = 'hidden';
+    courtainContainer.style.opacity = '0';
+  }, 2000);
+};
+
 // Aquí se muestra el mapa 
 let map;
 let infoWindow;
@@ -10,13 +19,14 @@ function initMap() {
       lng: -70.644
     },
     zoom: 15,
+    radio: 2000,
     mapTypeId: 'roadmap'
   });
   infoWindow = new google.maps.InfoWindow;
 
   // Aquí se nos pide la localización para buscarla en el mapa
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
       pos = {
         lat: position.coords.latitude,
         lng: position.coords.longitude
@@ -44,24 +54,24 @@ function initMap() {
       // Creando el DOM (input de búsqueda)
       const input = document.getElementById('pac-input');
       const searchBox = new google.maps.places.SearchBox(input);
-      // Bias the SearchBox results towards current map's viewport.
-      map.addListener('bounds_changed', function() {
+      // Muestra los resultados que hay en el mapa mostrado, de acuerdo al input
+      map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
       });
       var markers = [];
-      searchBox.addListener('places_changed', function() {
+      searchBox.addListener('places_changed', function () {
         var places = searchBox.getPlaces();
         if (places.length === 0) {
           return;
         }
         // Ésta opción borra los marcadores antiguos
-        markers.forEach(function(marker) {
+        markers.forEach(function (marker) {
           marker.setMap(null);
         });
         markers = [];
         // For each place, get the icon, name and location.
         var bounds = new google.maps.LatLngBounds();
-        places.forEach(function(place) {
+        places.forEach(function (place) {
           console.log(place);
           if (!place.geometry) {
             console.log('Error: el lugar no tiene datos.');
@@ -89,7 +99,7 @@ function initMap() {
         });
         map.fitBounds(bounds);
       });
-    }, function() {// Caso errores
+    }, function () {// Caso errores
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {
