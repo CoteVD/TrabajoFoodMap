@@ -16,9 +16,15 @@ function initMap() {
       };
 
       infoWindow.setPosition(pos);
-      infoWindow.setContent('Location found.');
+      infoWindow.setContent('Estás aquí');
       infoWindow.open(map);
       map.setCenter(pos);
+
+      var marker = new google.maps.Marker({
+        position: pos,
+        map: map,
+        title: 'Estás aquí'
+      });
     }, function () {
       handleLocationError(true, infoWindow, map.getCenter());
     });
