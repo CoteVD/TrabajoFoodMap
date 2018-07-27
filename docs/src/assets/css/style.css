@@ -1,0 +1,63 @@
+*,*:after, *:before{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#courtainContainer{
+  background-color: #2B2B2B;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  -webkit-transition: all 2s ease;
+  -o-transition: all 2s ease;
+  transition: all 2s ease;
+  z-index: 10000;
+}
+
+body {
+  background-color:#2B2B2B; 
+}
+
+h1, h3 {
+  color: #E88A33;
+}
+
+#map {
+  border-radius: 5px;
+  height: 30vh;
+  width: 52vh;
+}
+
+#imagenes {
+  height: 30vh;
+  width: 50vh;
+}
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content .rating {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#infowindow-content {
+  display: inline;
+}
+
+#target {
+  width: 345px;
+}
