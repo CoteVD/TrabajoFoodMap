@@ -73,7 +73,6 @@ function initMap() {
         // Se supone que para cada lugar entrega el nombre, un icono y la locación. No funciona.
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function (place) {
-          console.log(place);
           if (!place.geometry) {
             console.log('Error: el lugar no tiene datos.');
             return;
@@ -92,10 +91,7 @@ function initMap() {
             title: place.name,
             position: place.geometry.location
           }));
-          google.maps.event.addListener(markers, 'click', () => {
-            infowindow.setContent(place.name);
-            infowindow.open(map, markers);
-          });
+          console.log(markers);
           if (place.geometry.viewport) {
             bounds.union(place.geometry.viewport);
           } else {

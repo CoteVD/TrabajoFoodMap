@@ -28,7 +28,7 @@ h1, h3 {
 #map {
   border-radius: 5px;
   height: 30vh;
-  width: 49vh;
+  width: 52vh;
 }
 
 #imagenes {
@@ -50,7 +50,7 @@ h1, h3 {
   display: none;
 }
 
-#map #infowindow-content {
+#infowindow-content {
   display: inline;
 }
 
