@@ -46,6 +46,10 @@ h1, h3 {
   font-weight: bold;
 }
 
+#infowindow-content .rating {
+  font-weight: bold;
+}
+
 #infowindow-content {
   display: none;
 }
@@ -54,18 +58,6 @@ h1, h3 {
   display: inline;
 }
 
-#title {
-  color: #2B2B2B;
-  background-color: #E88A33;
-  font-size: 25px;
-  font-weight: 500;
-  padding: 6px 12px;
-}
-
 #target {
   width: 345px;
-}
-
-#options {
-  color: #E88A33;
 }
