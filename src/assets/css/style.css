@@ -35,3 +35,37 @@ h1, h3 {
   height: 30vh;
   width: 50vh;
 }
+
+#description {
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+#infowindow-content .title {
+  font-weight: bold;
+}
+
+#infowindow-content {
+  display: none;
+}
+
+#map #infowindow-content {
+  display: inline;
+}
+
+#title {
+  color: #2B2B2B;
+  background-color: #E88A33;
+  font-size: 25px;
+  font-weight: 500;
+  padding: 6px 12px;
+}
+
+#target {
+  width: 345px;
+}
+
+#options {
+  color: #E88A33;
+}
