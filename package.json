@@ -1,5 +1,5 @@
 {
-  "name": "0.0.1",
+  "name": "foodmap",
   "version": "0.0.1",
   "description": "Trabajo sobre FoodMap",
   "main": "index.js",
@@ -18,5 +18,9 @@
   "bugs": {
     "url": "https://github.com/CoteVD/scl-2018-01-foodmap/issues"
   },
-  "homepage": "https://github.com/CoteVD/scl-2018-01-foodmap#readme"
+  "homepage": "https://github.com/CoteVD/scl-2018-01-foodmap#readme",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
 }
