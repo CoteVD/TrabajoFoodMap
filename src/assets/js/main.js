@@ -40,9 +40,11 @@ function initMap() {
       map.setCenter(pos);
 
       // Poniendo un marker en la ubicación del usuario
+      let image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
       marker = new google.maps.Marker({
         position: pos,
         map: map,
+        icon: image,
         title: 'Estás aquí'
       });
 
@@ -55,7 +57,7 @@ function initMap() {
         infoWindow.open(map);
       }
 
-      // Creando el DOM (input de búsqueda)
+      // Creando el input de búsqueda
       const input = document.getElementById('pac-input');
       const searchBox = new google.maps.places.SearchBox(input);
 
@@ -85,7 +87,7 @@ function initMap() {
             return;
           }
 
-          //Información de los restaurants
+          //Información de los restaurants al clickear sobre el marcador
           service.getDetails({
             placeId: place.place_id,
           }, function (place, status) {
