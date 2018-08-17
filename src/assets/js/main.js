@@ -11,6 +11,7 @@ function initMap() { console.log('lib loaded') }
 // Aquí se muestra el mapa 
 let map;
 let infoWindow;
+let service;
 let pos;
 let marker;
 function initMap() {
@@ -24,6 +25,7 @@ function initMap() {
     mapTypeId: 'roadmap'
   });
   infoWindow = new google.maps.InfoWindow;
+  service = new google.maps.places.PlacesService(map);
 
   // Aquí se nos pide la localización para buscarla en el mapa
   if (navigator.geolocation) {
@@ -55,6 +57,7 @@ function initMap() {
       // Creando el DOM (input de búsqueda)
       const input = document.getElementById('pac-input');
       const searchBox = new google.maps.places.SearchBox(input);
+
       // Muestra los resultados que hay en el mapa, de acuerdo al input
       map.addListener('bounds_changed', function () {
         searchBox.setBounds(map.getBounds());
@@ -65,19 +68,21 @@ function initMap() {
         if (places.length === 0) {
           return;
         }
+
         // Ésta opción borra los marcadores antiguos
         markers.forEach(function (marker) {
           marker.setMap(null);
         });
         markers = [];
-        // Se supone que para cada lugar entrega el nombre, un icono y la locación. No funciona.
+
+        // Para cada lugar entrega el nombre
         var bounds = new google.maps.LatLngBounds();
         places.forEach(function (place) {
           console.log(place);
           if (!place.geometry) {
             console.log('Error: el lugar no tiene datos.');
             return;
-          }
+          }         
           var icon = {
             url: place.icon,
             size: new google.maps.Size(71, 71),
@@ -85,6 +90,7 @@ function initMap() {
             anchor: new google.maps.Point(17, 34),
             scaledSize: new google.maps.Size(25, 25)
           };
+          
           // Creo un marcador para cada lugar
           markers.push(new google.maps.Marker({
             map: map,
@@ -92,6 +98,24 @@ function initMap() {
             title: place.name,
             position: place.geometry.location
           }));
+
+          //Información de los restaurants
+          service.getDetails({
+            placeId: place.place_id,
+          }, function(place, status) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              var marker = new google.maps.Marker({
+                map: map,
+                position: place.geometry.location
+              });
+              google.maps.event.addListener(marker, 'click', function() {
+                infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' +
+                  'Place ID: ' + place.place_id + '<br>' +
+                  place.formatted_address + '</div>');
+                infoWindow.open(map, this);
+              });
+            }
+          });
           if (place.geometry.viewport) {
             bounds.union(place.geometry.viewport);
           } else {
