@@ -1,3 +1,4 @@
+/* Sección de la cortina cuando se carga la página */
 *,*:after, *:before{
   margin: 0;
   padding: 0;
@@ -7,6 +8,8 @@
 }
 
 #courtainContainer{
+  margin: 0;
+  padding: 0;
   background-color: #2B2B2B;
   height: 100%;
   width: 100%;
@@ -17,6 +20,7 @@
   z-index: 10000;
 }
 
+/* Diseño del html */
 body {
   background-color:#2B2B2B; 
 }
@@ -25,39 +29,15 @@ h1, h3 {
   color: #E88A33;
 }
 
+/* Sección mapa */
 #map {
   border-radius: 5px;
   height: 30vh;
-  width: 52vh;
+  width:45vh;
 }
 
+/* Sección carrusel */
 #imagenes {
   height: 30vh;
-  width: 50vh;
-}
-
-#description {
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-}
-
-#infowindow-content .title {
-  font-weight: bold;
-}
-
-#infowindow-content .rating {
-  font-weight: bold;
-}
-
-#infowindow-content {
-  display: none;
-}
-
-#infowindow-content {
-  display: inline;
-}
-
-#target {
-  width: 345px;
+  width: 49vh;
 }

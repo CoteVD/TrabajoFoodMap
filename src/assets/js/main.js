@@ -8,20 +8,20 @@ window.onload = () => {
 };
 function initMap() { console.log('lib loaded') }
 
-// Aquí se muestra el mapa 
 let map;
 let infoWindow;
 let service;
 let pos;
 let marker;
+
+// Aquí se muestra el mapa 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {
       lat: -33.397,
-      lng: -70.644
+      lng: -70.644,
     },
     zoom: 15,
-    radio: 800,
     mapTypeId: 'roadmap'
   });
   infoWindow = new google.maps.InfoWindow;
@@ -46,6 +46,7 @@ function initMap() {
         title: 'Estás aquí'
       });
 
+      // Funcion en caso de errores para obtener la Geolocación o que el navegador no la soporte 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
@@ -82,36 +83,20 @@ function initMap() {
           if (!place.geometry) {
             console.log('Error: el lugar no tiene datos.');
             return;
-          }         
-          var icon = {
-            url: place.icon,
-            size: new google.maps.Size(71, 71),
-            origin: new google.maps.Point(0, 0),
-            anchor: new google.maps.Point(17, 34),
-            scaledSize: new google.maps.Size(25, 25)
-          };
-          
-          // Creo un marcador para cada lugar
-          markers.push(new google.maps.Marker({
-            map: map,
-            icon: icon,
-            title: place.name,
-            position: place.geometry.location
-          }));
+          }
 
           //Información de los restaurants
           service.getDetails({
             placeId: place.place_id,
-          }, function(place, status) {
+          }, function (place, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
               var marker = new google.maps.Marker({
                 map: map,
                 position: place.geometry.location
               });
-              google.maps.event.addListener(marker, 'click', function() {
-                infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                  'Place ID: ' + place.place_id + '<br>' +
-                  place.formatted_address + '</div>');
+              google.maps.event.addListener(marker, 'click', function () {
+                infoWindow.setContent('<div>' + 'Nombre: ' + place.name + '<br>' +
+                  'Calificación: ' + place.rating + '<br>' + 'Dirección: ' + place.formatted_address + '</div>');
                 infoWindow.open(map, this);
               });
             }
@@ -131,7 +116,3 @@ function initMap() {
     handleLocationError(false, infoWindow, map.getCenter());
   }
 }
-/* Para hacer un pop up con los datos el restaurante, se necesitan los siguientes datos del json:
-Title: name, 
-Address: formated_address, 
-Rating: rating*/
