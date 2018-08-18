@@ -39,7 +39,7 @@ function initMap() {
       infoWindow.open(map);
       map.setCenter(pos);
 
-      // Poniendo un marker en la ubicación del usuario
+      // Poniendo un marker en la ubicación del usuario, está un poco corrido
       let image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
       marker = new google.maps.Marker({
         position: pos,
@@ -72,11 +72,10 @@ function initMap() {
           return;
         }
 
-        // Ésta opción borra los marcadores antiguos
+        //Borra los markers antiguos (no funciona con los nuevos iconos con info)
         markers.forEach(function (marker) {
           marker.setMap(null);
         });
-        markers = [];
 
         // Para cada lugar entrega el nombre
         var bounds = new google.maps.LatLngBounds();
@@ -92,10 +91,27 @@ function initMap() {
             placeId: place.place_id,
           }, function (place, status) {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
+              /* Intento fallido de resetear los markers
+              if (place.length !== 0) {
+                markers.forEach(function(marker) {
+                  marker.setMap(null);
+                })
+              }*/
+              //Le da forma al icono, como un cuchillo y tenedor
+              var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+              };
+              //El marcador en sí, ubicandolo en el mapa  
               var marker = new google.maps.Marker({
                 map: map,
-                position: place.geometry.location
+                position: place.geometry.location,
+                icon: icon
               });
+              //Al clickear, da la información del restaurante; está un poco corrido del ícono
               google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.setContent('<div>' + 'Nombre: ' + place.name + '<br>' +
                   'Calificación: ' + place.rating + '<br>' + 'Dirección: ' + place.formatted_address + '</div>');
@@ -111,7 +127,8 @@ function initMap() {
         });
         map.fitBounds(bounds);
       });
-    }, function () {// Caso errores
+      // Caso errores
+    }, function () {
       handleLocationError(true, infoWindow, map.getCenter());
     });
   } else {

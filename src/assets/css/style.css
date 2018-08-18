@@ -41,3 +41,42 @@ h1, h3 {
   height: 30vh;
   width: 49vh;
 }
+
+@media (min-width: 700px) {  
+  #map {
+    border-radius: 5px;
+    height: 50vh;
+    width:700px;  
+  }
+
+  #imagenes {
+    height: 30vh;
+    width: 700px;
+  }
+}
+
+@media (min-width: 1000px) {
+  #map {
+    border-radius: 5px;
+    height: 50vh;
+    width:1000px;  
+  }
+
+  #imagenes {
+    height: 30vh;
+    width: 1000px;
+  }
+}
+
+@media (min-width: 1200px) {
+  #map {
+    border-radius: 5px;
+    height: 50vh;
+    width:1200px;  
+  }
+
+  #imagenes {
+    height: 30vh;
+    width: 1200px;
+  }
+}
