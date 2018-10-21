@@ -15,3 +15,4 @@ Aplicación que permite buscar restaurantes por tipos de comida específicos y l
 ## Api
 * GooglePlaces
 ## Deploy link
+https://cotevd.github.io/TrabajoFoodMap/
